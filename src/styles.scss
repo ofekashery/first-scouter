@@ -6,6 +6,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+*:focus {
+  outline: 0!important;
+}
+
 .mat-toolbar {
   background: #fff;
   border-bottom: 1px solid #ccc;

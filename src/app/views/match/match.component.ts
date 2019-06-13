@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { periods } from '../../../environments/form-fields';
-import {Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { environment } from '../../../environments/environment';
+import * as fetch from 'node-fetch';
 
 @Component({
   selector: 'scouter-match',
@@ -14,6 +16,7 @@ export class MatchComponent {
   match: any;
   team: number;
   form: FormGroup;
+  allFields: any[] = [];
 
   constructor(private router: Router) {
     if (!sessionStorage.getItem('Match') || !sessionStorage.getItem('Team')) {
@@ -29,10 +32,46 @@ export class MatchComponent {
         field.type = field.constructor.name;
         field.key = (period.title + '-' + field.constructor.name + '-' + field.title).toLowerCase().replace(/ /g, '-');
         group[field.key] = new FormControl(field.defaultValue);
+        this.allFields.push(field);
       });
     });
 
     this.form = new FormGroup(group);
     this.periods = periods;
+  }
+
+  sendForm() {
+    if (confirm(`Are you sure to send this ${this.match.name} scouting about team #${this.team}?`)) {
+      const values: any = this.form.value;
+      console.log(values);
+      const result = {
+        'header': [],
+        'row': []
+      };
+      result.header.push('Timestamp');
+      const pad = (n) => n <= 9 ? '0' + n : n.toString();
+      const date = new Date();
+      result.row.push(pad(date.getDate()) + '/' + pad(date.getMonth() + 1) + ' ' + pad(date.getHours()) + ':' + pad(date.getMinutes()) + ':' + pad(date.getSeconds()));
+
+      result.header.push('Match');
+      result.row.push(this.match.name);
+
+      result.header.push('Team');
+      result.row.push(this.team);
+
+      for (const field of this.allFields) {
+        let value = values[field.key];
+        if (value && value.toString() === 'true' || value.toString() === 'false') {
+          value = value ? 'Yes' : 'No';
+        }
+        result.header.push(field.title);
+        result.row.push(value);
+      }
+
+      fetch(environment.sheet_app_url, {
+        method: 'post',
+        body: JSON.stringify(result)
+      });
+    }
   }
 }

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  teamName = environment.teamName;
+  teamName = environment.team_name;
 
   constructor(public router: Router) {
 
