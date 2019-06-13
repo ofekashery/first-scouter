@@ -76,9 +76,9 @@ export class MatchComponent {
       }
 
       fetch(environment.sheet_app_url, {
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify(result)
-      }).then((err) => {
+      }).then(() => {
         this.router.navigateByUrl('home');
         localStorage.removeItem('Match');
         localStorage.removeItem('Team');
