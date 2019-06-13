@@ -1,5 +1,8 @@
-# FIRST Scouter
-
+<div align="center">
+  <h1>FIRST Scouter</h1>
+  
+  ![Screenshot](https://user-images.githubusercontent.com/16443111/59424480-bde90f80-8ddc-11e9-984e-fcb3b9901113.png)
+</div>
 
 ### Development server
 
