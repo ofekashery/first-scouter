@@ -80,6 +80,9 @@ export class MatchComponent {
         body: JSON.stringify(result)
       }).then((err) => {
         this.router.navigateByUrl('home');
+        localStorage.removeItem('Match');
+        localStorage.removeItem('Team');
+      }).catch(() => {
         alert('Oops! Cannot send you form. Please check you connection and try again.')
       });
     }
