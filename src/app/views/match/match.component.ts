@@ -15,6 +15,7 @@ export class MatchComponent {
   periods: any[];
   match: any;
   team: number;
+  alliance: string = '';
   form: FormGroup;
   allFields: any[] = [];
 
@@ -26,6 +27,12 @@ export class MatchComponent {
     this.match = JSON.parse(sessionStorage.getItem('Match'));
     this.team = parseInt(sessionStorage.getItem('Team'));
     const group: any = {};
+
+    if (this.match.red_teams.includes(this.team)) {
+      this.alliance = 'red'
+    } else {
+      this.alliance = 'blue'
+    }
 
     periods.forEach(period => {
       period.fields.forEach(field => {
