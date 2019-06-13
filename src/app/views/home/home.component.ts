@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { mergeMap, startWith } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import fetchEvent from '../../fetch-event';
 
 @Component({
@@ -18,8 +19,9 @@ export class HomeComponent implements OnInit {
   matches: any[] = [];
   filteredMatches: Observable<any[]>;
   selectedMatch: any = null;
+  selectedTeam: number = null;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.getGroupedMatches().then((result) => {
       this.matches = result;
     });
@@ -29,19 +31,23 @@ export class HomeComponent implements OnInit {
     this.filteredMatches = this.form.get('selectMatch')!.valueChanges
       .pipe(
         startWith(''),
-        mergeMap(async value => this.filterMatches(value))
+        map(value => this.filterMatches(value))
       );
   }
 
+  selectMatchAndTeam() {
+    sessionStorage.setItem('Match', JSON.stringify(this.selectedMatch));
+    sessionStorage.setItem('Team', this.selectedTeam.toString());
+    return this.router.navigateByUrl('match');
+  }
+
   filterMatches(value: string): any[] {
-    console.log(value)
     const allMatches = [].concat.apply([], (this.matches || []).map(list => list.matches));
-    const match = allMatches.filter(match => match.name.toLowerCase() === (value || '').toLowerCase());
+    const match = allMatches.filter(match => match.name.toLowerCase() === ((value || '').toLowerCase()));
     this.selectedMatch = match.length > 0 ? match[0] : null;
-    console.log('selectedMatch', this.selectedMatch);
 
     if (value) {
-      const filterValue = (value || '').toString().toLowerCase();
+      const filterValue = (value || '').toLowerCase();
       return JSON.parse(JSON.stringify(this.matches)).map(list => {
         list.matches = list.matches.filter(match => match.name.toLowerCase().includes(filterValue));
         return list;
@@ -73,7 +79,6 @@ export class HomeComponent implements OnInit {
       result.sort((a, b) => {
         return COMP_LEVELS_PLAY_ORDER[a.matches[0].comp_level] -COMP_LEVELS_PLAY_ORDER[b.matches[0].comp_level];
       });
-      console.log(result);
       return result;
     });
   }

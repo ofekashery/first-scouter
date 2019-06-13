@@ -18,7 +18,7 @@
       <div *ngIf="selectedMatch">
         <mat-form-field class="w-100" style="font-size: 1rem">
           <mat-label>Select a team</mat-label>
-          <mat-select>
+          <mat-select [(value)]="selectedTeam">
             <mat-option *ngFor="let team of selectedMatch.red_teams; let i = index" [value]="team" style="color: #f44336">
               Red {{ i + 1 }} <small>{{ team }}</small>
             </mat-option>
@@ -27,11 +27,8 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <button mat-flat-button class="w-100" color="accent" *ngIf="selectedTeam || true" (click)="selectMatchAndTeam()">Start</button>
       </div>
     </mat-card-content>
-    <mat-card-actions class="d-none">
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
   </mat-card>
 </div>
