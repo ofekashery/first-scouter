@@ -68,7 +68,7 @@ export class MatchComponent {
 
       for (const field of this.allFields) {
         let value = values[field.key];
-        if (value && value.toString() === 'true' || value.toString() === 'false') {
+        if (value && (value.toString() === 'true' || value.toString() === 'false')) {
           value = value ? 'Yes' : 'No';
         }
         result.header.push(field.title);
@@ -78,6 +78,9 @@ export class MatchComponent {
       fetch(environment.sheet_app_url, {
         method: 'post',
         body: JSON.stringify(result)
+      }).then((err) => {
+        this.router.navigateByUrl('home');
+        alert('Oops! Cannot send you form. Please check you connection and try again.')
       });
     }
   }
