@@ -1,0 +1,37 @@
+<div class="container" style="max-width: 700px">
+  <mat-card class="example-card">
+    <mat-card-title>Start Scouting</mat-card-title>
+    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field class="w-100" style="font-size: 1rem">
+          <input type="text" matInput placeholder="Select a match" formControlName="selectMatch" required [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of (filteredMatches | async)" [label]="group.name">
+              <mat-option *ngFor="let match of group.matches" [value]="match.name">
+                {{ match.name }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+      <div *ngIf="selectedMatch">
+        <mat-form-field class="w-100" style="font-size: 1rem">
+          <mat-label>Select a team</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let team of selectedMatch.red_teams; let i = index" [value]="team" style="color: #f44336">
+              Red {{ i + 1 }} <small>{{ team }}</small>
+            </mat-option>
+            <mat-option *ngFor="let team of selectedMatch.blue_teams; let i = index" [value]="team" style="color: #3f51b5">
+              Blue {{ i + 1 }} <small>{{ team }}</small>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="d-none">
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
