@@ -1,58 +1,46 @@
 <div class="container" style="max-width: 700px">
   <h4 class="text-center mb-4">{{ match.name }}</h4>
   <mat-card>
-    <mat-vertical-stepper>
-      <mat-step *ngFor="let period of periods; let i = index" [label]="period.title">
-        <div *ngFor="let field of period.fields" [ngSwitch]="field.type" class="mb-3">
-          <ng-template ngSwitchCase="Selector">
-            <mat-form-field class="w-100">
-              <mat-label>{{ field.title }}</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let option of field.options" [value]="option">
-                  {{ option }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </ng-template>
+    <form [formGroup]="form">
+      <mat-vertical-stepper>
+        <mat-step *ngFor="let period of periods; let i = index" [label]="period.title">
+          <div *ngFor="let field of period.fields" [ngSwitch]="field.type" class="mb-3">
+            <ng-template ngSwitchCase="Selector">
+              <mat-form-field class="w-100">
+                <mat-label>{{ field.title }}</mat-label>
+                <mat-select [formControlName]="field.key">
+                  <mat-option *ngFor="let option of field.options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-template>
 
-          <ng-template ngSwitchCase="Checkbox">
-            <mat-checkbox class="w-100" [checked]="field.defaultValue">{{ field.title }}</mat-checkbox>
-          </ng-template>
+            <ng-template ngSwitchCase="Checkbox">
+              <mat-checkbox class="w-100" [checked]="field.defaultValue" [formControlName]="field.key">{{ field.title }}</mat-checkbox>
+            </ng-template>
 
-          <ng-template ngSwitchCase="TextField">
-            <mat-form-field class="w-100">
-              <input matInput [placeholder]="field.title">
-            </mat-form-field>
-          </ng-template>
+            <ng-template ngSwitchCase="TextField">
+              <mat-form-field class="w-100">
+                <input matInput [placeholder]="field.title" [formControlName]="field.key">
+              </mat-form-field>
+            </ng-template>
 
-          <ng-template ngSwitchCase="NumberField">
-            <scouter-input-spinner class="w-100" [title]="field.title" [min]="field.min" [max]="field.max"></scouter-input-spinner>
-          </ng-template>
+            <ng-template ngSwitchCase="NumberField">
+              <scouter-input-spinner class="w-100" [formControlName]="field.key" [title]="field.title" [min]="field.min" [max]="field.max"></scouter-input-spinner>
+            </ng-template>
 
-          <ng-template ngSwitchCase="Textarea">
-            <mat-form-field class="w-100">
-              <textarea matInput [placeholder]="field.title"></textarea>
-            </mat-form-field>
-          </ng-template>
-        </div>
-        <div *ngIf="(i + 1) !== periods.length">
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </mat-step>
-    </mat-vertical-stepper>
+            <ng-template ngSwitchCase="Textarea">
+              <mat-form-field class="w-100">
+                <textarea matInput [placeholder]="field.title" [formControlName]="field.key"></textarea>
+              </mat-form-field>
+            </ng-template>
+          </div>
+          <div *ngIf="(i + 1) !== periods.length">
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </form>
   </mat-card>
 </div>
-<!--
-<div class="container" style="max-width: 700px" [innerHtml]="safeHtml">
-  <mat-card>
-    <mat-vertical-stepper>
-      <mat-step label="Step 1">
-        Content 1
-      </mat-step>
-      <mat-step label="Step 1">
-        Content 2
-      </mat-step>
-    </mat-vertical-stepper>
-  </mat-card>
-</div>
--->
