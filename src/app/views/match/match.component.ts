@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import * as fetch from 'node-fetch';
+import {Checkbox} from "../../fields";
 
 @Component({
   selector: 'scouter-match',
@@ -70,7 +71,7 @@ export class MatchComponent {
 
       for (const field of this.allFields) {
         let value = values[field.key];
-        if (value && (value.toString() === 'true' || value.toString() === 'false')) {
+        if (field.type === 'Checkbox') {
           value = value ? 'Yes' : 'No';
         }
         result.header.push(field.title);
