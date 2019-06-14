@@ -15,7 +15,7 @@ export class MatchComponent {
 
   periods: any[];
   match: any;
-  team: number;
+  team: string;
   alliance: string = '';
   form: FormGroup;
   allFields: any[] = [];
@@ -27,7 +27,7 @@ export class MatchComponent {
       return;
     }
     this.match = JSON.parse(sessionStorage.getItem('Match'));
-    this.team = parseInt(sessionStorage.getItem('Team'));
+    this.team = sessionStorage.getItem('Team');
     const group: any = {};
 
     if (this.match.red_teams.includes(this.team)) {
