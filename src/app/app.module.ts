@@ -12,6 +12,8 @@ import { HomeComponent } from './views/home/home.component';
 import { MatchComponent } from './views/match/match.component';
 
 import { InputSpinnerComponent } from './componenets/input-spinner/input-spinner.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { InputSpinnerComponent } from './componenets/input-spinner/input-spinner
     MaterialModule,
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
