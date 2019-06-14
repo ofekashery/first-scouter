@@ -12,9 +12,8 @@ import fetchEvent from '../../fetch-event';
 })
 export class HomeComponent implements OnInit {
 
-  eventName: string;
   form: FormGroup = this.formBuilder.group({
-    selectMatch: '',
+    selectMatch: ''
   });
   matches: any[] = [];
   filteredMatches: Observable<any[]>;

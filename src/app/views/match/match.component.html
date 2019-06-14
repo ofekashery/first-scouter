@@ -41,7 +41,8 @@
             <button mat-button matStepperNext>Next</button>
           </div>
           <div *ngIf="(i + 1) === periods.length">
-            <button mat-flat-button color="primary" (click)="sendForm()">Send</button>
+            <button mat-flat-button color="primary" *ngIf="!isSending" (click)="sendForm()">Send</button>
+            <button mat-flat-button color="primary" *ngIf="isSending" disabled>Sending...</button>
           </div>
         </mat-step>
       </mat-vertical-stepper>

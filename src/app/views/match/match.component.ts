@@ -18,6 +18,7 @@ export class MatchComponent {
   alliance: string = '';
   form: FormGroup;
   allFields: any[] = [];
+  isSending: boolean = false;
 
   constructor(private router: Router) {
     if (!sessionStorage.getItem('Match') || !sessionStorage.getItem('Team')) {
@@ -49,6 +50,8 @@ export class MatchComponent {
 
   sendForm() {
     if (confirm(`Are you sure to send this ${this.match.name} scouting about team #${this.team}?`)) {
+      this.isSending = true;
+
       const values: any = this.form.value;
       console.log(values);
       const result = {
@@ -79,11 +82,12 @@ export class MatchComponent {
         method: 'POST',
         body: JSON.stringify(result)
       }).then(() => {
-        this.router.navigateByUrl('home');
         localStorage.removeItem('Match');
         localStorage.removeItem('Team');
+        this.router.navigateByUrl('home');
       }).catch(() => {
-        alert('Oops! Cannot send you form. Please check you connection and try again.')
+        this.isSending = false;
+        alert('Oops! Cannot send you form. Please check you connection and try again.');
       });
     }
   }
