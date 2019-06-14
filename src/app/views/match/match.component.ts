@@ -37,8 +37,7 @@ export class MatchComponent {
 
     periods.forEach(period => {
       period.fields.forEach(field => {
-        field.type = field.constructor.name;
-        field.key = (period.title + '-' + field.constructor.name + '-' + field.title).toLowerCase().replace(/ /g, '-');
+        field.key = (period.title + '-' + field.type + '-' + field.title).toLowerCase().replace(/ /g, '-');
         group[field.key] = new FormControl(field.defaultValue);
         this.allFields.push(field);
       });

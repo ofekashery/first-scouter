@@ -1,4 +1,6 @@
 export class Period {
+  type = 'Period';
+
   title: string;
   fields: any[] = [];
 
@@ -9,9 +11,11 @@ export class Period {
 }
 
 export class Selector {
+  type = 'Selector';
+  defaultValue: string = null;
+
   title: string;
   options: string[] = [];
-  defaultValue: string = null;
 
   constructor(title: string, options: string[] = []) {
     this.title = title;
@@ -20,8 +24,10 @@ export class Selector {
 }
 
 export class Checkbox {
-  title: string;
+  type = 'Checkbox';
   defaultValue: boolean = false;
+
+  title: string;
 
   constructor(title: string, defaultValue?: boolean) {
     this.title = title;
@@ -30,8 +36,10 @@ export class Checkbox {
 }
 
 export class TextField {
-  title: string;
+  type = 'TextField';
   defaultValue: string = '';
+
+  title: string;
 
   constructor(title: string) {
     this.title = title;
@@ -39,10 +47,12 @@ export class TextField {
 }
 
 export class NumberField {
+  type = 'NumberField';
+  defaultValue: number = 0;
+
   title: string;
   min: number;
   max: number;
-  defaultValue: number = 0;
 
   constructor(title: string, min?: number, max?: number) {
     this.title = title;
@@ -53,8 +63,10 @@ export class NumberField {
 }
 
 export class Textarea {
-  title: string;
+  type = 'Textarea';
   defaultValue: string = '';
+
+  title: string;
 
   constructor(title: string) {
     this.title = title;
