@@ -1,5 +1,6 @@
 <div align="center">
   <h1>FIRST Scouter</h1>
+  Scouting app for _FIRST_ Robotics Competition and _FIRST_ Tech Challenge that syncs with Google Sheets.
   
   ![Screenshot](https://user-images.githubusercontent.com/16443111/59431380-7454f080-8ded-11e9-99c0-3e1425cdae96.png)
 </div>
