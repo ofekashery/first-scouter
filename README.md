@@ -9,7 +9,10 @@
 #### Setting up the project
 Clone the repository and run npm install.
 
-#### Setting up settings
+#### Setup the Spreadsheet
+The full explanation is [here](https://github.com/ofekashery/first-scouter/blob/master/setup-spreadsheet.md).
+
+#### Setting up the settings
 Fill the appropriate details in [environment.ts](https://github.com/ofekashery/first-scouter/blob/master/src/environments/environment.ts) and in [environment.prod.ts](https://github.com/ofekashery/first-scouter/blob/master/src/environments/environment.prod.ts).
 <br/>You can change the fields in [form-fields.ts](https://github.com/ofekashery/first-scouter/blob/master/src/environments/form-fields.ts).
 

@@ -11,12 +11,6 @@
 var SHEET_NAME = "Sheet1";
 var SCRIPT_PROP = PropertiesService.getScriptProperties();
 
-function doOption(e) {
-  return ContentService
-    .createTextOutput(JSON.stringify({"result":"success"}))
-    .setMimeType(ContentService.MimeType.JAVASCRIPT);
-}
-
 function doPost(e) {
   try {
     var doc = SpreadsheetApp.openById(SCRIPT_PROP.getProperty("key"));
