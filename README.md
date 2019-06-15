@@ -1,5 +1,8 @@
 <div align="center">
-  <h1>FIRST Scouter   <img src="https://img.shields.io/github/package-json/v/ofekashery/first-scouter.svg?color=%2300bcd4&style=flat-square" /></h1>
+  <h1>FIRST Scouter<br/>
+    <img src="https://img.shields.io/travis/ofekashety/first-scouter.svg?style=flat-square" />
+    <img src="https://img.shields.io/github/package-json/v/ofekashery/first-scouter.svg?color=%2300bcd4&style=flat-square" />
+  </h1>
   
   
   Scouting app for <i>FIRST</i> Robotics Competition and <i>FIRST</i> Tech Challenge that syncs with Google Sheets.
