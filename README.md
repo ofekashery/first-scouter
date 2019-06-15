@@ -1,7 +1,8 @@
 <div align="center">
   <h1>FIRST Scouter<br/>
-    <img src="https://img.shields.io/travis/com/ofekashery/first-scouter.svg?style=flat-square" />
-    <img src="https://img.shields.io/github/package-json/v/ofekashery/first-scouter.svg?color=%2300bcd4&style=flat-square" />
+  
+[![Build Status](https://img.shields.io/travis/com/ofekashery/first-scouter.svg?style=flat-square)](https://travis-ci.com/ofekashery/first-scouter)
+[![Version](https://img.shields.io/github/package-json/v/ofekashery/first-scouter.svg?color=%2300bcd4&style=flat-square)](https://github.com/ofekashery/first-scouter/releases)
   </h1>
   
   
