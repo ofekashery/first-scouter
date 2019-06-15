@@ -1,10 +1,15 @@
 {
   "name": "first-scouter",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Ofek Ashery",
+  "license": "MIT",
+  "homepage": "https://github.com/ofekashery/first-scouter#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ofekashery/first-scouter.git"
+    "url": "git+https://github.com/ofekashery/first-scouter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ofekashery/first-scouter/issues"
   },
   "scripts": {
     "ng": "ng",
@@ -14,7 +19,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^8.0.0",
     "@angular/cdk": "^8.0.1",
