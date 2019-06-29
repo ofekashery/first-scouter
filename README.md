@@ -34,7 +34,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 👤 **Ofek Ashery**
 * Github: [@ofekashery](https://github.com/ofekashery)
-* Website: [ofek.ashery.me](https://ofek.ashrey.me)
+* Website: [ofek.ashery.me](https://ofek.ashery.me)
 
 
 ## 🤝 Contributing
